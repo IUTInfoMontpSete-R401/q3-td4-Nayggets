@@ -1,0 +1,60 @@
+
+Single responsibility principle:
+Le sudoku s'occupe des tours de l'affichage de la reception des touches
+
+
+Open/closed principle
+Les classes ne sont pas ouvert a l'extension mais uniquement a la modification.
+
+
+Liskov substitution principle
+Pas d'heritage aucun probleme avec le principe de liskov
+
+Interface segregation principle
+Il n'y a pas d'interface la classe sudoku fait littéralement tout et
+on a plein de fonction que l'on utilise pas dans la conception antipattrn
+Dependency inversion principle
+La classe sudoku Solver depend de la classe Sudoku elle ne peut pas etre juste un type de sudoku qui se resolue seul
+Le principe n'est donc pas tres bien respecter.
+
+3)
+Il permet de diviser le travaille entre differentes classes donc
+resoudrer les problemes lié a la single responsibility principle
+Il permettrai de deploiment simplement d'autre pattern pour
+l'open close principle
+Il ferrait une separation plus restreinte des interfaces afin
+qu'un utilisateur n'utilise que ce dont il a besoin
+Et aussi il reduirai les dependances et permettrait une adaptation
+du code bas niveau comparé a celui haut niveau.
+
+4)
+L'approche anti pattern possède tout les desavantage lié au non respect du principe solide
+alors que le patron MVC corrigera ces desavantage et permettra d'avoir un code plus scalable et maintenable
+5)
+Cela permettra une plus grosse modification et réutilise le meme principe pour potentiellement d'autre jeu ou d'autre règle
+ainsi que de le rendre plus lisible et plus testable plus agreable a evoluer pour que la solution MVC sois elle meme en accord avec
+les principes SOLID. ou meme utiliser different algo de resolution
+
+6)
+
+Un code dur a lire a modifier a comprendre et surtout qui ne respecte aucun principe solide
+et aucune classe ne gere l'utilisation du sudoku.
+
+7)
+On regroupe toute les fonctionnalité dans 3 categorie en fonction de ce qu'elle font
+La categorie Model s'occupe de la recuperation des etat/information
+La Categorie Vue s'occupe de l'affichage de ces données
+et La Categorie Controller s'occupe du comportement et de la modification des données.
+8)
+Le patron observeur permet de garder un oeil sur des objets qui le previendront leur d'une modification et il notifira tout les objets qui l'observe que un changement a etait effectuer et lequel.
+9) le patron strategy permet de dicter le comportement a une classe en fonction d'une classe strategy pour utiliser un algo en fonction de la strategy passer en parametre .
+10)
+Le patron commande permet de passer une commande qui s'executera sur un autre objet que le patron commande a , cela permettra de modifier le modèle depuis le patron commande en lui envoyant
+par exemple une commande modifiant la strategy ou les données.
+11)
+On peut appliquer le patron composite pour avoir une cellule generrique qui possèdera une methode afficher avec un comportement different pour chaque element composite pour que tout s'affiche
+de manière generique et pouvoir rajouter des elements affichable
+12)
+Il faut relié les 3 caracteristique entre elle en les fesant communiquer et avoir des dependances entre eux tel que le modèle envois les data au controller pour les modifier ect.
+
+13)

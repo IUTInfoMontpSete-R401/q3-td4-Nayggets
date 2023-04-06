@@ -1,6 +1,6 @@
 package antipattern;
 
-import pattern.SudokuModel;
+//import pattern.Model.SudokuModel;
 
 import java.util.ArrayList;
 import java.util.List;
