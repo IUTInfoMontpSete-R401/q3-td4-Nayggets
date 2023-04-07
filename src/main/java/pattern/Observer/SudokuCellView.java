@@ -1,16 +1,15 @@
-package Pattern.Observers;
+package pattern.Observer;
 
-import Pattern.Composite.Composite;
-import Pattern.View.SudokuView;
+import pattern.Model.SudokuModel;
 import pattern.Observer.SudokuObserver;
 
 public class SudokuCellView implements SudokuObserver {
-    private Composite cell;
+    private SudokuModel sudokuModel;
     private int row;
     private int col;
 
-    public SudokuCellView(Composite cell, int row, int col) {
-        this.cell = cell;
+    public SudokuCellView(SudokuModel sudokuModel, int row, int col) {
+        this.sudokuModel = sudokuModel;
         this.row=row;
         this.col=col;
     }
@@ -19,7 +18,7 @@ public class SudokuCellView implements SudokuObserver {
     public void update(int row, int col, int value) {
         if(row==this.row && col==this.col){
             System.out.println("Cell at row " + row + ", column " + col + " updated to " + value);
-            cell.setValue(value);
+            sudokuModel.setValueAt(row,col,value);
         }
     }
 }
