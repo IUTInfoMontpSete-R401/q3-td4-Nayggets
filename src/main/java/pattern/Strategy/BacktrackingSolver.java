@@ -1,14 +1,19 @@
 package pattern.Strategy;
 
 import antipattern.Sudoku;
+import pattern.Model.SudokuModel;
 
 public class BacktrackingSolver implements StrategySolver{
-    public boolean solve(Sudoku sudoku) {
+
+    public BacktrackingSolver() {
+    }
+
+    public boolean solve(SudokuModel sudoku) {
         return solveCell(0,0,sudoku);
     }
 
 
-    private boolean solveCell(int row, int column, Sudoku sudoku) {
+    private boolean solveCell(int row, int column, SudokuModel sudoku) {
         if (row == sudoku.getBoardSize()) {
             return true;
         } else {

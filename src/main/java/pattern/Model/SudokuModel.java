@@ -1,6 +1,6 @@
 package pattern.Model;
 
-import pattern.Composite.Cellule;
+import pattern.Composite.Case;
 import pattern.Composite.Composite;
 import pattern.Observer.SudokuObserver;
 
@@ -8,51 +8,41 @@ import java.util.ArrayList;
 
 public class SudokuModel {
 
-    private Composite composite;
 
+    private int[][] board;
     private ArrayList<SudokuObserver> observerList = new ArrayList<>();
 
-    public SudokuModel(int[][] board)
-    {
-        Cellule[] cellules = new Cellule[board.length];
-        for(int i = 0 ; i < board.length ; i++){
-            cellules[i] = new Cellule(board[i]);
-        }
-        composite = new Cellule(cellules);
+    public SudokuModel(int boardSize) {
+        board = new int[boardSize][boardSize];
     }
+
 
     public int getValueAt(int row, int col) {
-        return composite.getValue(row,col);
+        return board[row][col];
     }
-
-
-    public int getBlockSize() {
-        return (int)Math.sqrt((double)composite.length());
-    }
-
 
     public boolean isValueValid(int row, int col, int value) {
         // Check row
-        for (int i = 0; i < composite.length(); i++) {
-            if (this.getValueAt(row,i) == value) {
+        for (int i = 0; i < board.length; i++) {
+            if (board[row][i] == value) {
                 return false;
             }
         }
 
         // Check column
-        for (int i = 0; i < composite.length(); i++) {
-            if (this.getValueAt(i,col) == value) {
+        for (int i = 0; i < board.length; i++) {
+            if (board[i][col] == value) {
                 return false;
             }
         }
 
         // Check region
-        int regionSize = (int) Math.sqrt(this.composite.length());
+        int regionSize = (int) Math.sqrt(board.length);
         int rowRegionStart = (row / regionSize) * regionSize;
         int colRegionStart = (col / regionSize) * regionSize;
         for (int i = rowRegionStart; i < rowRegionStart + regionSize; i++) {
             for (int j = colRegionStart; j < colRegionStart + regionSize; j++) {
-                if (this.getValueAt(i,j) == value) {
+                if (board[i][j] == value) {
                     return false;
                 }
             }
@@ -61,10 +51,24 @@ public class SudokuModel {
         return true;
     }
 
-
     public void setValueAt(int row, int col, int value) {
-        this.composite.setValue(row,col,value);
+        board[row][col] = value;
+        notifyAllObserver(row, col, value);
     }
+
+
+
+    public int getBoardSize() {
+        return board.length;
+    }
+
+
+    public int getBlockSize() {
+
+        return (int) Math.sqrt(board[0].length);
+    }
+
+
 
     public boolean isGameFinished() {
         for (int i = 0; i < this.getBoardSize(); i++) {
@@ -77,14 +81,11 @@ public class SudokuModel {
         return true;
     }
 
-    void registerObserver(SudokuObserver sudokuObserver){
+    public void registerObserver(SudokuObserver sudokuObserver){
         observerList.add(sudokuObserver);
     }
-    public int getBoardSize() {
-        return this.composite.length();
-    }
 
-    private void notifyAllObserver(int[][] board,int row, int col, int value){
+    private void notifyAllObserver(int row, int col, int value){
         for(SudokuObserver o : observerList){
             o.update(row,col,value);
         }

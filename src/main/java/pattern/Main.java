@@ -1,23 +1,20 @@
 package pattern;
 
+import pattern.Controller.SudokuController;
 import pattern.Model.SudokuModel;
+import pattern.Strategy.BacktrackingSolver;
 import pattern.View.SudokuView;
 
 public class Main {
     public static void main(String[] args) {
-        int[][] board = new int[9][];
-        board[0] = new int[]{1, 2, 0,0,0,0,0,0,0};
-        board[1] = new int[]{0, 0, 0,0,0,0,0,0,0};
-        board[2] = new int[]{0, 0, 0,0,0,0,0,0,0};
-        board[3] = new int[]{0, 0, 0,0,0,0,0,0,0};
-        board[4] = new int[]{0, 0, 0,0,0,0,0,0,0};
-        board[5] = new int[]{0, 0, 0,0,0,0,0,0,0};
-        board[6] = new int[]{0, 0, 0,0,0,0,0,0,0};
-        board[7] = new int[]{0, 0, 0,0,0,0,0,0,0};
-        board[8] = new int[]{0, 0, 0,0,0,0,0,0,0};
-        SudokuModel sudokuModel = new SudokuModel(board);
-        SudokuView sudokuView = new SudokuView(sudokuModel);
+        SudokuModel sudokuModel = new SudokuModel(9);
+        SudokuView sudokuView = new SudokuView(9);
+        SudokuController sudokuController = new SudokuController(sudokuView,sudokuModel);
         sudokuView.display();
+        BacktrackingSolver backtrackingSolver = new BacktrackingSolver();
+        sudokuController.startGame();
+        sudokuView.display();
+
 
     }
 }

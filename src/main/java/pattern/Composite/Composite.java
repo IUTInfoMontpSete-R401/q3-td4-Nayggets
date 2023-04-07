@@ -2,11 +2,9 @@ package pattern.Composite;
 
 public interface Composite {
 
+    public int getValue ();
 
+    public void setValue(int value);
 
-    public int getValue(int row,int col);
-
-    public void setValue(int row,int col,int value);
-
-    public int length();
+    public Composite[] getCell();
 }
