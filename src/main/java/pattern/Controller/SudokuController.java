@@ -39,9 +39,9 @@ public class SudokuController {
 
         }
         */
-        for(int i = 0 ; i < composites.length*composites.length ; i++){
-            for(int j = 0 ; j < composites.length*composites.length ; j++){
-                sudokuModel.registerObserver(new SudokuCellView(sudoku[i][j/sudoku[0].length].getCells()[j%sudoku[0].length],i,j));
+        for(int i = 0 ; i < composites.length; i++){
+            for(int j = 0 ; j < composites.length ; j++){
+                sudokuModel.registerObserver(new SudokuCellView(sudokuView.getBoard()[sudokuView.blockIForRowAndCol(i)][sudokuView.blockJForRowAndCol(j)].getCell()[sudokuView.caseInBlockForRowAndCol(i,j)],i,j));
             }
         }
 

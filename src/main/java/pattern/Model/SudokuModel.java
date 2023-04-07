@@ -13,7 +13,7 @@ public class SudokuModel {
     private ArrayList<SudokuObserver> observerList = new ArrayList<>();
 
     public SudokuModel(int boardSize) {
-        board = new int[boardSize][boardSize];
+        board = new int[boardSize*boardSize][boardSize*boardSize];
     }
 
 

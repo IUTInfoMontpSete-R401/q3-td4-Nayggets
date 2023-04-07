@@ -14,6 +14,7 @@ public class SudokuView {
 
 
     public SudokuView(int taille){
+        taille *= taille;
         board = new Composite[taille][taille];
         for(int i = 0 ; i < taille;i++){
             for(int j = 0; j  < taille; j++){
@@ -53,6 +54,7 @@ public class SudokuView {
                 } else {
                     System.out.print(value + " ");
                 }
+
             }
             System.out.println("|");
         }
@@ -65,19 +67,19 @@ public class SudokuView {
         return board.length;
     }
 
-    private int blockIForRowAndCol(int row){
+    public int blockIForRowAndCol(int row){
         int real_row = (int) (row / getBoardSize());
         return real_row;
 
     }
 
-    private int blockJForRowAndCol(int col){
+    public int blockJForRowAndCol(int col){
         int real_col = (int) (col / getBoardSize());
         return col;
 
     }
 
-    private int caseInBlockForRowAndCol(int row,int col){
+    public int caseInBlockForRowAndCol(int row,int col){
         int real_col = col % getBoardSize();
         int real_row = row % getBoardSize();
         int nb = real_row * getBoardSize() + real_col;
@@ -88,7 +90,7 @@ public class SudokuView {
 
 
     public int getBlockSize() {
-        return board[0][0].getCell().length;
+        return (int) Math.sqrt(board[0].length);
     }
 
 
